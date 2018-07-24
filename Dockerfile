@@ -4,7 +4,7 @@ FROM ubuntu:latest
 
 USER root
 
-RUN /usr/local/bin/install-plugins.sh git matrix-auth workflow-aggregator docker-workflow blueocean credentials-binding 
+#RUN /usr/local/bin/install-plugins.sh git matrix-auth workflow-aggregator docker-workflow blueocean credentials-binding 
 
 ENV JENKINS_USER admin
 ENV JENKINS_PASS admin
