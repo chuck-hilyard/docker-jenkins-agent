@@ -10,9 +10,7 @@ docker-workflow
 durable-task
 emailext-template
 git
-#git-client
-#git-server
-#github-branch-source
+github-branch-source
 gradle
 ldap
 matrix-auth

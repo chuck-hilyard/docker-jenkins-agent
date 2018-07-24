@@ -45,37 +45,39 @@ time.sleep(15)
 subprocess.run(["usermod", "-aG", "docker", "jenkins"])
 time.sleep(15)
 subprocess.run(["sudo", "npm", "install", "-g", "gulp"])
+time.sleep(15)
+subprocess.run(["sudo", "service", "docker", "restart"])
 
 # add github repos as jobs to this jenkins server
-subprocess.run(["ssh-keyscan", "github.com", ">>", "/home/jenkins/.ssh/known_hosts"])
-f = open('/tmp/docker-jenkins-agent/repos.txt', 'r')
-repos = []
-for repo in f:
-  REPO_NAME = repo.split("~",1)[0].rstrip('\n')
-  REPO_URL = repo.split("~",1)[1].rstrip('\n')
-  TARGET_FOLDER = "/home/jenkins/jobs/{}".format(REPO_NAME)
-  url = "http://consul.chilyard.int.media.dev.usa.reachlocalservices.com:8500/v1/kv/{}/config/branch?raw".format(REPO_NAME)
-  response = requests.get(url)
-  if response.status_code == 200:
-    BRANCH = response.text
-  else:
-    BRANCH = "master"
-  try:
-	  # ********* don't need to clone the repo, just place the config.xml file
-    REPO_CONFIG_FILE_DIR = "/home/jenkins/jobs/{}/config.xml".format(REPO_NAME)
-    subprocess.run(["git", "clone", REPO_URL, TARGET_FOLDER, "--branch", BRANCH, "--depth", "1"])
-  except:
-    print("git clone of {} failed, skipping...".format(REPO_NAME))
-  try:
-    template_repo_config_file = open('/tmp/docker-jenkins-agent/template_repo_config.xml', 'r')
-    template_repo_config_string = template_repo_config_file.read()
-    template_repo_config_file.close()
-    formatted_template = template_repo_config_string.format(REPO_URL=REPO_URL, BRANCH=BRANCH)
-    repo_config_xml = open(REPO_CONFIG_FILE_DIR, 'w')
-    repo_config_xml.write(formatted_template)
-    repo_config_xml.close()
-  except FileNotFoundError as e:
-    print("file copy to {} failed".format(REPO_CONFIG_FILE_DIR))
+#subprocess.run(["ssh-keyscan", "github.com", ">>", "/home/jenkins/.ssh/known_hosts"])
+#f = open('/tmp/docker-jenkins-agent/repos.txt', 'r')
+#repos = []
+#for repo in f:
+#  REPO_NAME = repo.split("~",1)[0].rstrip('\n')
+#  REPO_URL = repo.split("~",1)[1].rstrip('\n')
+#  TARGET_FOLDER = "/home/jenkins/jobs/{}".format(REPO_NAME)
+#  url = "http://consul.chilyard.int.media.dev.usa.reachlocalservices.com:8500/v1/kv/{}/config/branch?raw".format(REPO_NAME)
+#  response = requests.get(url)
+#  if response.status_code == 200:
+#    BRANCH = response.text
+#  else:
+#    BRANCH = "master"
+#  try:
+#	  # ********* don't need to clone the repo, just place the config.xml file
+#    REPO_CONFIG_FILE_DIR = "/home/jenkins/jobs/{}/config.xml".format(REPO_NAME)
+#    subprocess.run(["git", "clone", REPO_URL, TARGET_FOLDER, "--branch", BRANCH, "--depth", "1"])
+#  except:
+#    print("git clone of {} failed, skipping...".format(REPO_NAME))
+#  try:
+#    template_repo_config_file = open('/tmp/docker-jenkins-agent/template_repo_config.xml', 'r')
+#    template_repo_config_string = template_repo_config_file.read()
+#    template_repo_config_file.close()
+#    formatted_template = template_repo_config_string.format(REPO_URL=REPO_URL, BRANCH=BRANCH)
+#    repo_config_xml = open(REPO_CONFIG_FILE_DIR, 'w')
+#    repo_config_xml.write(formatted_template)
+#    repo_config_xml.close()
+#  except FileNotFoundError as e:
+#    print("file copy to {} failed".format(REPO_CONFIG_FILE_DIR))
 
 # after all the changes, hit restart
 subprocess.run(["curl", "-X", "POST", "-u", "admin:admin", "http://127.0.0.1:8080/safeRestart"])
