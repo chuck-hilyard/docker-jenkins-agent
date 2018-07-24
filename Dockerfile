@@ -21,9 +21,9 @@ RUN apt-get -y update && apt-get -y upgrade && apt-get -y install openjdk-8-jdk-
 RUN pip3 install requests
 RUN useradd jenkins
 
-COPY --chown=jenkins jenkins.war /home/jenkins/jenkins.war
-COPY --chown=jenkins *.groovy /usr/share/jenkins/ref/init.groovy.d/
-COPY --chown=jenkins *.xml /home/jenkins/
+#COPY --chown=jenkins jenkins.war /home/jenkins/jenkins.war
+#COPY --chown=jenkins *.groovy /usr/share/jenkins/ref/init.groovy.d/
+#COPY --chown=jenkins *.xml /home/jenkins/
 COPY aws_codebuild /root/.ssh/id_rsa
 COPY --chown=jenkins aws_codebuild /home/jenkins/.ssh/id_rsa
 COPY known_hosts /root/.ssh/known_hosts
