@@ -15,19 +15,19 @@ RUN apt-get -y update && apt-get -y upgrade && apt-get -y install openjdk-8-jdk-
 RUN pip3 install requests
 RUN useradd jenkins
 
-COPY --chown=jenkins jenkins.war /var/jenkins_home/jenkins.war
+COPY --chown=jenkins jenkins.war /home/jenkins/jenkins.war
 COPY *.groovy /usr/share/jenkins/ref/init.groovy.d/
-COPY *.xml /var/jenkins_home/
+COPY *.xml /home/jenkins/
 COPY aws_codebuild /root/.ssh/id_rsa
-COPY aws_codebuild /var/jenkins_home/.ssh/id_rsa
+COPY aws_codebuild /home/jenkins/.ssh/id_rsa
 COPY known_hosts /root/.ssh/known_hosts
-COPY known_hosts /var/jenkins_home/.ssh/known_hosts
+COPY known_hosts /home/jenkins/.ssh/known_hosts
 
 RUN cd /tmp; git clone https://github.com/chuck-hilyard/docker-jenkins-slave
-RUN chown -R jenkins:jenkins /var/jenkins_home/; chown -R jenkins:jenkins /tmp
+RUN chown -R jenkins:jenkins /home/jenkins/; chown -R jenkins:jenkins /tmp
 RUN echo "jenkins  ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/README
 
-#VOLUME /var/jenkins_home
+#VOLUME /home/jenkins
 
 USER jenkins
 

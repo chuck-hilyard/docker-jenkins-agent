@@ -10,7 +10,7 @@ import subprocess
 import time
 
 # startup the jenkins service
-params = [ 'java', '-jar', '-Djenkins.install.runSetupWizard=false', '/var/jenkins_home/jenkins.war']
+params = [ 'java', '-jar', '-Djenkins.install.runSetupWizard=false', '/home/jenkins/jenkins.war']
 jenkins_start = subprocess.Popen(params, stdout=subprocess.PIPE)
 
 # install the suggested and desired plugins list
@@ -25,7 +25,7 @@ time.sleep(30)
 i = 0
 while i < len(suggested_plugins):
   PLUGIN = suggested_plugins[i]
-  subprocess.run(["java", "-jar", "/var/jenkins_home/war/WEB-INF/jenkins-cli.jar", "-s", "http://127.0.0.1:8080/", "-auth", "admin:admin", "install-plugin", PLUGIN])
+  subprocess.run(["java", "-jar", "/home/jenkins/war/WEB-INF/jenkins-cli.jar", "-s", "http://127.0.0.1:8080/", "-auth", "admin:admin", "install-plugin", PLUGIN])
   i += 1
 
 # install build/test software
@@ -45,13 +45,13 @@ time.sleep(15)
 subprocess.run(["sudo", "npm", "install", "-g", "gulp"])
 
 # add github repos as jobs to this jenkins server
-subprocess.run(["ssh-keyscan", "github.com", ">>", "/var/jenkins_home/.ssh/known_hosts"])
+subprocess.run(["ssh-keyscan", "github.com", ">>", "/home/jenkins/.ssh/known_hosts"])
 f = open('/tmp/docker-jenkins-slave/repos.txt', 'r')
 repos = []
 for repo in f:
   REPO_NAME = repo.split("~",1)[0].rstrip('\n')
   REPO_URL = repo.split("~",1)[1].rstrip('\n')
-  TARGET_FOLDER = "/var/jenkins_home/jobs/{}".format(REPO_NAME)
+  TARGET_FOLDER = "/home/jenkins/jobs/{}".format(REPO_NAME)
   url = "http://consul.chilyard.int.media.dev.usa.reachlocalservices.com:8500/v1/kv/{}/config/branch?raw".format(REPO_NAME)
   response = requests.get(url)
   if response.status_code == 200:
@@ -60,7 +60,7 @@ for repo in f:
     BRANCH = "master"
   try:
 	  # ********* don't need to clone the repo, just place the config.xml file
-    REPO_CONFIG_FILE_DIR = "/var/jenkins_home/jobs/{}/config.xml".format(REPO_NAME)
+    REPO_CONFIG_FILE_DIR = "/home/jenkins/jobs/{}/config.xml".format(REPO_NAME)
     subprocess.run(["git", "clone", REPO_URL, TARGET_FOLDER, "--branch", BRANCH, "--depth", "1"])
   except:
     print("git clone of {} failed, skipping...".format(REPO_NAME))
