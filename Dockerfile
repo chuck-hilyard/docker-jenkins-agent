@@ -8,9 +8,10 @@ USER root
 
 ENV JENKINS_USER admin
 ENV JENKINS_PASS admin
+ENV JENKINS_SLAVE_ADDRESS ""
 ENV CHROME_BIN /usr/bin/chromium
 
-RUN apt-get -y update && apt-get -y upgrade && apt-get -y install openjdk-8-jdk-headless openjdk-8-jre-headless python3 python3-jenkins python3-pip vim sudo git
+RUN apt-get -y update && apt-get -y upgrade && apt-get -y install openjdk-8-jdk-headless openjdk-8-jre-headless python3 python3-jenkins python3-pip vim sudo git docker-engine curl
 RUN pip3 install requests
 RUN useradd jenkins
 
