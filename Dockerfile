@@ -23,7 +23,7 @@ COPY aws_codebuild /home/jenkins/.ssh/id_rsa
 COPY known_hosts /root/.ssh/known_hosts
 COPY known_hosts /home/jenkins/.ssh/known_hosts
 
-RUN cd /tmp; git clone https://github.com/chuck-hilyard/docker-jenkins-slave
+RUN cd /tmp; git clone https://github.com/chuck-hilyard/docker-jenkins-agent
 RUN chown -R jenkins:jenkins /home/jenkins/; chown -R jenkins:jenkins /tmp
 RUN echo "jenkins  ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/README
 
@@ -31,4 +31,4 @@ RUN echo "jenkins  ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/README
 
 USER jenkins
 
-CMD [ "python3", "-u", "/tmp/docker-jenkins-slave/init.py" ]
+CMD [ "python3", "-u", "/tmp/docker-jenkins-agent/init.py" ]

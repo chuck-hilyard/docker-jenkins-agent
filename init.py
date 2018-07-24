@@ -14,7 +14,7 @@ params = [ 'java', '-jar', '-Djenkins.install.runSetupWizard=false', '/home/jenk
 jenkins_start = subprocess.Popen(params, stdout=subprocess.PIPE)
 
 # install the suggested and desired plugins list
-f = open('/tmp/docker-jenkins-slave/plugins.txt', 'r')
+f = open('/tmp/docker-jenkins-agent/plugins.txt', 'r')
 suggested_plugins = []
 for line in f:
   stripped = line.strip()
@@ -48,7 +48,7 @@ subprocess.run(["sudo", "npm", "install", "-g", "gulp"])
 
 # add github repos as jobs to this jenkins server
 subprocess.run(["ssh-keyscan", "github.com", ">>", "/home/jenkins/.ssh/known_hosts"])
-f = open('/tmp/docker-jenkins-slave/repos.txt', 'r')
+f = open('/tmp/docker-jenkins-agent/repos.txt', 'r')
 repos = []
 for repo in f:
   REPO_NAME = repo.split("~",1)[0].rstrip('\n')
@@ -67,7 +67,7 @@ for repo in f:
   except:
     print("git clone of {} failed, skipping...".format(REPO_NAME))
   try:
-    template_repo_config_file = open('/tmp/docker-jenkins-slave/template_repo_config.xml', 'r')
+    template_repo_config_file = open('/tmp/docker-jenkins-agent/template_repo_config.xml', 'r')
     template_repo_config_string = template_repo_config_file.read()
     template_repo_config_file.close()
     formatted_template = template_repo_config_string.format(REPO_URL=REPO_URL, BRANCH=BRANCH)
