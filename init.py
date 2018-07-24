@@ -25,7 +25,7 @@ time.sleep(30)
 i = 0
 while i < len(suggested_plugins):
   PLUGIN = suggested_plugins[i]
-  subprocess.run(["java", "-jar", "/home/jenkins/jenkins/war/WEB-INF/jenkins-cli.jar", "-s", "http://127.0.0.1:8080/", "-auth", "admin:admin", "install-plugin", PLUGIN])
+  subprocess.run(["java", "-jar", "/home/jenkins/war/WEB-INF/jenkins-cli.jar", "-s", "http://127.0.0.1:8080/", "-auth", "admin:admin", "install-plugin", PLUGIN])
   i += 1
 
 # install build/test software
@@ -41,7 +41,7 @@ subprocess.run(["sudo", "apt-get", "install", "-y", "libgconf2-4"])
 time.sleep(15)
 subprocess.run(["sudo", "apt-get", "install", "-y", "docker.io"])
 time.sleep(15)
-#subprocess.run(["sudo", "apt-get", "install", "-y", "awscli"])
+subprocess.run(["sudo", "apt-get", "install", "-y", "awscli"])
 subprocess.run(["usermod", "-aG", "docker", "jenkins"])
 time.sleep(15)
 subprocess.run(["sudo", "npm", "install", "-g", "gulp"])
