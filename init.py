@@ -10,23 +10,23 @@ import subprocess
 import time
 
 # startup the jenkins service
-params = [ 'java', '-jar', '-Djenkins.install.runSetupWizard=false', '/home/jenkins/jenkins.war', '-jnlpUrl', 'http://localhost:32769/computer/localhost/slave-agent.jnlp']
-jenkins_start = subprocess.Popen(params, stdout=subprocess.PIPE)
+#params = [ 'java', '-jar', '-Djenkins.install.runSetupWizard=false', '/home/jenkins/jenkins.war', '-jnlpUrl', 'http://localhost:#32769/computer/localhost/slave-agent.jnlp']
+#jenkins_start = subprocess.Popen(params, stdout=subprocess.PIPE)
 
 # install the suggested and desired plugins list
-f = open('/tmp/docker-jenkins-agent/plugins.txt', 'r')
-suggested_plugins = []
-for line in f:
-  stripped = line.strip()
-  suggested_plugins.append(stripped)
+#f = open('/tmp/docker-jenkins-agent/plugins.txt', 'r')
+#suggested_plugins = []
+#for line in f:
+#  stripped = line.strip()
+#  suggested_plugins.append(stripped)
 # we're waiting 30 seconds for jenkins to come up
 # TODO: move this to a health check
-time.sleep(30)
-i = 0
-while i < len(suggested_plugins):
-  PLUGIN = suggested_plugins[i]
-  subprocess.run(["java", "-jar", "/home/jenkins/war/WEB-INF/jenkins-cli.jar", "-s", "http://127.0.0.1:8080/", "-auth", "admin:admin", "install-plugin", PLUGIN])
-  i += 1
+#time.sleep(30)
+#i = 0
+#while i < len(suggested_plugins):
+#  PLUGIN = suggested_plugins[i]
+#  subprocess.run(["java", "-jar", "/home/jenkins/war/WEB-INF/jenkins-cli.jar", "-s", "http://127.0.0.1:8080/", "-auth", "admin:#admin", "install-plugin", PLUGIN])
+#  i += 1
 
 # install build/test software
 # ***** make sure the previous install is done prior to moving on
@@ -47,6 +47,10 @@ time.sleep(15)
 subprocess.run(["sudo", "npm", "install", "-g", "gulp"])
 time.sleep(15)
 subprocess.run(["sudo", "service", "docker", "restart"])
+time.sleep(15)
+subprocess.run(["sudo", "apt-get", "install", "-y", "ssh"])
+time.sleep(15)
+subprocess.run(["sudo", "service", "ssh", "restart"])
 
 # add github repos as jobs to this jenkins server
 #subprocess.run(["ssh-keyscan", "github.com", ">>", "/home/jenkins/.ssh/known_hosts"])
@@ -80,7 +84,7 @@ subprocess.run(["sudo", "service", "docker", "restart"])
 #    print("file copy to {} failed".format(REPO_CONFIG_FILE_DIR))
 
 # after all the changes, hit restart
-subprocess.run(["curl", "-X", "POST", "-u", "admin:admin", "http://127.0.0.1:8080/safeRestart"])
+#subprocess.run(["curl", "-X", "POST", "-u", "admin:admin", "http://127.0.0.1:8080/safeRestart"])
 
 # dumb method to keep the this.process alive
-jenkins_start.wait()
+#jenkins_start.wait()
