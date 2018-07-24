@@ -13,12 +13,12 @@ ENV CHROME_BIN /usr/bin/chromium
 RUN apt-get -y update && apt-get -y upgrade && apt-get -y install python3 python3-jenkins python3-pip vim sudo
 RUN pip3 install requests
 
-COPY --chown=jenkins *.groovy /usr/share/jenkins/ref/init.groovy.d/
-COPY --chown=jenkins *.xml /var/jenkins_home/
-COPY --chown=root aws_codebuild /root/.ssh/id_rsa
-COPY --chown=jenkins aws_codebuild /var/jenkins_home/.ssh/id_rsa
-COPY --chown=root known_hosts /root/.ssh/known_hosts
-COPY --chown=jenkins known_hosts /var/jenkins_home/.ssh/known_hosts
+COPY *.groovy /usr/share/jenkins/ref/init.groovy.d/
+COPY *.xml /var/jenkins_home/
+COPY aws_codebuild /root/.ssh/id_rsa
+COPY aws_codebuild /var/jenkins_home/.ssh/id_rsa
+COPY known_hosts /root/.ssh/known_hosts
+COPY known_hosts /var/jenkins_home/.ssh/known_hosts
 
 RUN cd /tmp; git clone https://github.com/chuck-hilyard/docker-jenkins-slave
 RUN chown -R jenkins:jenkins /var/jenkins_home/; chown -R jenkins:jenkins /tmp
