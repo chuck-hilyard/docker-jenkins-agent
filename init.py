@@ -47,10 +47,6 @@ time.sleep(15)
 subprocess.run(["sudo", "npm", "install", "-g", "gulp"])
 time.sleep(15)
 subprocess.run(["sudo", "service", "docker", "restart"])
-time.sleep(15)
-subprocess.run(["sudo", "apt-get", "install", "-y", "ssh"])
-time.sleep(15)
-subprocess.run(["sudo", "service", "ssh", "restart"])
 
 # add github repos as jobs to this jenkins server
 #subprocess.run(["ssh-keyscan", "github.com", ">>", "/home/jenkins/.ssh/known_hosts"])
