@@ -15,7 +15,7 @@ ENV SLAVE_SECRET ""
 ENV SLAVE_EXECUTORS "2"
 ENV SLAVE_WORING_DIR ""
 ENV CLEAN_WORKING_DIR "true"
-WORKDIR /home/jenkins
+ENV JENKINS_HOME "/home/jenkins"
 
 RUN apt-get -y update && apt-get -y upgrade && apt-get -y install openjdk-8-jdk-headless openjdk-8-jre-headless python3 python3-jenkins python3-pip vim sudo git curl chromium-browser
 RUN pip3 install requests
