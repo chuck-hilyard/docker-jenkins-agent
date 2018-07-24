@@ -22,12 +22,12 @@ RUN pip3 install requests
 RUN useradd jenkins
 
 COPY --chown=jenkins jenkins.war /home/jenkins/jenkins.war
-COPY *.groovy /usr/share/jenkins/ref/init.groovy.d/
-COPY *.xml /home/jenkins/
+COPY --chown=jenkins *.groovy /usr/share/jenkins/ref/init.groovy.d/
+COPY --chown=jenkins *.xml /home/jenkins/
 COPY aws_codebuild /root/.ssh/id_rsa
-COPY aws_codebuild /home/jenkins/.ssh/id_rsa
+COPY --chown=jenkins aws_codebuild /home/jenkins/.ssh/id_rsa
 COPY known_hosts /root/.ssh/known_hosts
-COPY known_hosts /home/jenkins/.ssh/known_hosts
+COPY --chown=jenkins known_hosts /home/jenkins/.ssh/known_hosts
 
 RUN cd /tmp; git clone https://github.com/chuck-hilyard/docker-jenkins-agent
 RUN chown -R jenkins:jenkins /home/jenkins/; chown -R jenkins:jenkins /tmp
