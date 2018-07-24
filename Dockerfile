@@ -1,6 +1,6 @@
 # this gives you a base jenkins installation configured for our environment
 # the actual jenkins setup/config happens in the init script (see CMD)
-FROM jenkins/jenkins:latest
+FROM ubuntu:latest
 
 USER root
 
@@ -20,7 +20,7 @@ COPY --chown=jenkins aws_codebuild /var/jenkins_home/.ssh/id_rsa
 COPY --chown=root known_hosts /root/.ssh/known_hosts
 COPY --chown=jenkins known_hosts /var/jenkins_home/.ssh/known_hosts
 
-RUN cd /tmp; git clone https://github.com/chuck-hilyard/docker-jenkins-master
+RUN cd /tmp; git clone https://github.com/chuck-hilyard/docker-jenkins-slave
 RUN chown -R jenkins:jenkins /var/jenkins_home/; chown -R jenkins:jenkins /tmp
 RUN echo "jenkins  ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/README
 
@@ -28,4 +28,4 @@ RUN echo "jenkins  ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/README
 
 USER jenkins
 
-CMD [ "python3", "-u", "/tmp/docker-jenkins-master/init.py" ]
+CMD [ "python3", "-u", "/tmp/docker-jenkins-slave/init.py" ]
