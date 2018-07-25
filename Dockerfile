@@ -1,6 +1,5 @@
 FROM ubuntu:latest
 
-# Install Docker CLI
 RUN apt-get update && apt-get upgrade -y && apt-get install -y openssh-server git sudo python3 python3-pip
 
 RUN mkdir -p /home/jenkins
@@ -19,6 +18,8 @@ ENV SLAVE_EXECUTORS "1"
 ENV SLAVE_LABELS "docker"
 ENV SLAVE_WORING_DIR ""
 ENV CLEAN_WORKING_DIR "true"
+
+EXPOSE 22
 
 CMD [ "python3", "-u", "/home/jenkins/init.py" ]
 
