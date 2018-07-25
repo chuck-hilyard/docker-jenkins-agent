@@ -5,6 +5,7 @@
 # adds github based projects to jenkins/jobs
 
 import http.client
+import jenkins
 import requests
 import subprocess
 import time
@@ -44,6 +45,24 @@ def install_software():
   time.sleep(15)
   subprocess.run(["sudo", "service", "ssh", "start"])
 
+def add_to_master():
+  server = jenkins.Jenkins('http://172.17.0.2:8080', username='admin', password='admin')
+
+  params = {
+      'port': '22',
+      'username': 'juser',
+      'credentialsId': '750b8e68-6a14-4856-b39f-3dd803326fa5',
+      'host': 'my.jenkins.slave'
+    }
+
+  server.create_node(
+    'test2',
+    nodeDescription = "test slave node",
+    remoteFS = "/home/jenkins",
+    labels = "common",
+    exclusive = False,
+    launcher = jenkins.LAUNCHER_SSH,
+    launcher_params = params)
 
 
 def main():
