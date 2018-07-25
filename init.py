@@ -7,6 +7,7 @@
 import http.client
 import jenkins
 import requests
+import socket
 import subprocess
 import time
 
@@ -45,18 +46,17 @@ def install_software():
   time.sleep(15)
   subprocess.run(["sudo", "service", "ssh", "start"])
 
-def add_to_master():
+def update_jenkins_master():
+  containerId = socket.gethostname()
   server = jenkins.Jenkins('http://172.17.0.2:8080', username='admin', password='admin')
-
   params = {
       'port': '22',
-      'username': 'juser',
+      'username': 'jenkins',
       'credentialsId': '750b8e68-6a14-4856-b39f-3dd803326fa5',
-      'host': 'my.jenkins.slave'
+      'host': '172.17.0.3'
     }
-
   server.create_node(
-    'test2',
+    containerId,
     nodeDescription = "test slave node",
     remoteFS = "/home/jenkins",
     labels = "common",
@@ -72,4 +72,5 @@ def main():
 
 if __name__ == '__main__':
   install_software()
+  update_jenkins_master()
   main()
