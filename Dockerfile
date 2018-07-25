@@ -28,7 +28,8 @@ VOLUME "${JENKINS_AGENT_HOME}" "/tmp" "/run" "/var/run"
 WORKDIR "${JENKINS_AGENT_HOME}"
 
 COPY setup-sshd /usr/local/bin/setup-sshd
-COPY --chown=jenkins aws_codebuild /home/jenkins/.ssh/authorized_keys
+COPY --chown=jenkins id_rsa.pub /home/jenkins/.ssh/authorized_keys
+COPY --chown=jenkins id_rsa /home/jenkins/.ssh/id_rsa
 
 EXPOSE 22
 
