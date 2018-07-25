@@ -12,7 +12,7 @@ import time
 def install_software():
   # install build/test software
   # TODO: make sure the previous install is done prior to moving on
-  subprocess.run(["ssh-keyscan", "github.com", ">>", "/home/jenkins/.ssh/known_hosts"])
+  subprocess.run(["ssh-keyscan github.com >> /home/jenkins/.ssh/known_hosts"])
   time.sleep(15)
   subprocess.run(["sudo", "apt-get", "install", "-y", "curl"])
   time.sleep(15)
@@ -31,6 +31,8 @@ def install_software():
   time.sleep(15)
   #subprocess.run(["sudo", "apt-get", "install", "-y", "awscli"])
   time.sleep(15)
+  subprocess.run(["sudo", "apt-get", "install", "-y", "openjdk-8-jre-headless"])
+  time.sleep(15)
   subprocess.run(["usermod", "-aG", "docker", "jenkins"])
   time.sleep(15)
   subprocess.run(["sudo", "npm", "install", "-g", "gulp"])
@@ -38,6 +40,8 @@ def install_software():
   subprocess.run(["sudo", "service", "docker", "start"])
   time.sleep(15)
   subprocess.run(["chown", "jenkins:jenkins", "-R", "/home/jenkins"])
+  time.sleep(15)
+  subprocess.run(["sudo", "service", "ssh", "start"])
 
 
 
