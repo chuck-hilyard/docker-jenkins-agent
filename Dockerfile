@@ -33,6 +33,7 @@ RUN chown jenkins:jenkins /home/jenkins/.ssh/known_hosts
 RUN chown -R jenkins:jenkins /home/jenkins
 RUN chown -R jenkins:jenkins /tmp
 RUN echo "jenkins  ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/README 
+RUN apt-get update -y && apt-get install -y git
 RUN git clone git@github.com:chuck-hilyard/docker-jenkins-agent.git
 
 #VOLUME "${JENKINS_AGENT_HOME}" "/tmp" "/run" "/var/run"
