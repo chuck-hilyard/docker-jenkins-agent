@@ -35,4 +35,6 @@ time.sleep(15)
 subprocess.run(["sudo", "npm", "install", "-g", "gulp"])
 time.sleep(15)
 subprocess.run(["sudo", "service", "docker", "restart"])
+time.sleep(15)
+subprocess.run(["chown", "jenkins:jenkins", "-R", "/home/jenkins"])
 
