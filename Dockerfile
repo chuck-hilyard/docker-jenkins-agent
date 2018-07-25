@@ -5,6 +5,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y openssh-server gi
 RUN mkdir -p /home/jenkins
 COPY id_rsa /home/jenkins/.ssh/id_rsa
 COPY id_rsa.pub /home/jenkins/.ssh/id_rsa.pub
+COPY known_hosts /home/jenkins/.ssh/known_hosts
 
 ADD init.py /home/jenkins/init.py
 
