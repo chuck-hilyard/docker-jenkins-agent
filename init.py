@@ -11,6 +11,8 @@ import time
 
 # install build/test software
 # TODO: make sure the previous install is done prior to moving on
+subprocess.run(["sudo", "apt-get", "install", "-y", "curl"])
+time.sleep(15)
 subprocess.run(["sudo", "useradd", "jenkins"])
 time.sleep(15)
 subprocess.run(["curl -sL https://deb.nodesource.com/setup_10.x |sudo -E bash -"], shell=True)
