@@ -35,7 +35,7 @@ def install_software():
   time.sleep(15)
   subprocess.run(["sudo", "npm", "install", "-g", "gulp"])
   time.sleep(15)
-  subprocess.run(["sudo", "service", "docker", "restart"])
+  subprocess.run(["sudo", "service", "docker", "start"])
   time.sleep(15)
   subprocess.run(["chown", "jenkins:jenkins", "-R", "/home/jenkins"])
 
