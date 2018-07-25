@@ -24,6 +24,7 @@ RUN sed -i /etc/ssh/sshd_config \
         -e 's/#LogLevel.*/LogLevel INFO/' && \
     mkdir /var/run/sshd
 
+USER jenkins
 COPY --chown=jenkins id_rsa.pub /home/jenkins/.ssh/authorized_keys
 COPY --chown=jenkins id_rsa /home/jenkins/.ssh/id_rsa
 COPY --chown=root id_rsa.pub /home/root/.ssh/authorized_keys
@@ -42,7 +43,7 @@ COPY setup-sshd /usr/local/bin/setup-sshd
 
 EXPOSE 22
 
-USER jenkins
+#USER jenkins
 
 #CMD [ "python3", "-u", "/docker-jenkins-agent/init.py" ]
 ENTRYPOINT [ "/usr/local/bin/setup-sshd" ]
