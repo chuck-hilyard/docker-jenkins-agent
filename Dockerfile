@@ -1,5 +1,5 @@
-FROM openjdk:8-jdk
-LABEL MAINTAINER="Nicolas De Loof <nicolas.deloof@gmail.com>"
+#FROM openjdk:8-jdk
+FROM ubuntu:latest
 
 ARG user=jenkins
 ARG group=jenkins
