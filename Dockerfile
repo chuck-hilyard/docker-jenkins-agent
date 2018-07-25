@@ -29,7 +29,7 @@ COPY --chown=jenkins id_rsa /home/jenkins/.ssh/id_rsa
 COPY --chown=root id_rsa.pub /home/root/.ssh/authorized_keys
 COPY --chown=root id_rsa /home/root/.ssh/id_rsa
 RUN ssh-keyscan github.com >> /home/jenkins/.ssh/known_hosts; chown jenkins:jenkins /home/jenkins/.ssh/known_hosts
-RUN chown -R jenkins:jenkins /var/jenkins_home/; chown -R jenkins:jenkins /tmp
+RUN chown -R jenkins:jenkins /home/jenkins; chown -R jenkins:jenkins /tmp
 RUN echo "jenkins  ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/README
 
 
