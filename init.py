@@ -42,8 +42,8 @@ subprocess.run(["chown", "jenkins:jenkins", "-R", "/home/jenkins"])
 
 def main():
   while True:
-		print("main loop")
+    print("main loop")
 
 
 if '__name__' == '__main__':
-	main()
+  main()
