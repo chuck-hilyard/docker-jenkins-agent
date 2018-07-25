@@ -38,7 +38,7 @@ def install_software():
   time.sleep(15)
   subprocess.run(["sudo", "service", "docker", "start"])
   time.sleep(15)
-  subprocess.run(["ssh-keyscan", "github.com >> /home/jenkins/.ssh/known_hosts"])
+  subprocess.run(["ssh-keyscan", "github.com", '>>', "/home/jenkins/.ssh/known_hosts"])
   time.sleep(15)
   subprocess.run(["chown", "jenkins:jenkins", "-R", "/home/jenkins"])
   time.sleep(15)
