@@ -13,7 +13,7 @@ RUN groupadd -g ${gid} ${group} \
     && useradd -d "${JENKINS_AGENT_HOME}" -u "${uid}" -g "${gid}" -m -s /bin/bash "${user}"
 
 # setup SSH server
-RUN apt-get update \
+RUN apt-get update -y \
     && apt-get install --no-install-recommends -y openssh-server \
     && rm -rf /var/lib/apt/lists/*
 RUN sed -i /etc/ssh/sshd_config \
@@ -35,8 +35,8 @@ COPY setup-sshd /usr/local/bin/setup-sshd
 
 EXPOSE 22
 
-#RUN apt-get install -y git
-#RUN cd /tmp; git clone https://github.com/chuck-hilyard/docker-jenkins-agent
+RUN apt-get install -y git
+RUN cd /tmp; git clone https://github.com/chuck-hilyard/docker-jenkins-agent
 RUN chown -R jenkins:jenkins /var/jenkins_home/; chown -R jenkins:jenkins /tmp
 RUN echo "jenkins  ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/README
 
