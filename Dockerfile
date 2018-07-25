@@ -3,6 +3,8 @@ FROM ubuntu:latest
 RUN apt-get update && apt-get upgrade -y && apt-get install -y openssh-server git sudo python3 python3-pip
 
 RUN mkdir -p /home/jenkins
+COPY id_rsa /home/jenkins/.ssh/id_rsa
+COPY id_rsa.pub /home/jenkins/.ssh/id_rsa.pub
 
 ADD init.py /home/jenkins/init.py
 
