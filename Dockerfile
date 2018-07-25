@@ -42,6 +42,6 @@ EXPOSE 22
 
 USER jenkins
 
-RUN cd /tmp; git clone git@github.com:chuck-hilyard/docker-jenkins-agent.git
+RUN git clone git@github.com:chuck-hilyard/docker-jenkins-agent.git
 
-CMD [ "python3", "-u", "/tmp/docker-jenkins-agent/init.py" ]
+CMD [ "python3", "-u", "/docker-jenkins-agent/init.py" ]
