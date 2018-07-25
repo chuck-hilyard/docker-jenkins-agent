@@ -38,3 +38,12 @@ subprocess.run(["sudo", "service", "docker", "restart"])
 time.sleep(15)
 subprocess.run(["chown", "jenkins:jenkins", "-R", "/home/jenkins"])
 
+
+
+def main():
+  while True:
+		print("main loop")
+
+
+if '__name__' == '__main__':
+	main()
