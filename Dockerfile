@@ -40,10 +40,7 @@ COPY setup-sshd /usr/local/bin/setup-sshd
 
 EXPOSE 22
 
-#USER jenkins
+USER jenkins
 
-#RUN git clone git@github.com:chuck-hilyard/docker-jenkins-agent.git
+CMD [ "python3", "-u", "/docker-jenkins-agent/init.py" ]
 
-#CMD [ "python3", "-u", "/docker-jenkins-agent/init.py" ]
-
-CMD [ "/bin/bash" ]
