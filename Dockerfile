@@ -12,6 +12,10 @@ ENV JENKINS_AGENT_HOME ${JENKINS_AGENT_HOME}
 RUN groupadd -g ${gid} ${group} \
     && useradd -d "${JENKINS_AGENT_HOME}" -u "${uid}" -g "${gid}" -m -s /bin/bash "${user}"
 
+COPY --chown=jenkins id_rsa.pub /home/jenkins/.ssh/authorized_keys
+COPY --chown=jenkins id_rsa /home/jenkins/.ssh/id_rsa
+RUN ssh-keyscan github.com >> /home/jenkins/.ssh/known_hosts
+
 # setup SSH server
 RUN apt-get update \
     && apt-get install --no-install-recommends -y openssh-server \
@@ -28,8 +32,6 @@ VOLUME "${JENKINS_AGENT_HOME}" "/tmp" "/run" "/var/run"
 WORKDIR "${JENKINS_AGENT_HOME}"
 
 COPY setup-sshd /usr/local/bin/setup-sshd
-COPY --chown=jenkins id_rsa.pub /home/jenkins/.ssh/authorized_keys
-COPY --chown=jenkins id_rsa /home/jenkins/.ssh/id_rsa
 
 EXPOSE 22
 
