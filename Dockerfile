@@ -14,7 +14,7 @@ RUN groupadd -g ${gid} ${group} \
 
 COPY --chown=jenkins id_rsa.pub /home/jenkins/.ssh/authorized_keys
 COPY --chown=jenkins id_rsa /home/jenkins/.ssh/id_rsa
-RUN ssh-keyscan github.com >> /home/jenkins/.ssh/known_hosts
+RUN ssh-keyscan github.com >> /home/jenkins/.ssh/known_hosts; chown jenkins:jenkins /home/jenkins/.ssh/known_hosts
 
 # setup SSH server
 RUN apt-get update \
