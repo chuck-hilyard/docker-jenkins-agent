@@ -24,21 +24,21 @@ RUN sed -i /etc/ssh/sshd_config \
         -e 's/#LogLevel.*/LogLevel INFO/' && \
     mkdir /var/run/sshd
 
-COPY --chown=jenkins id_rsa.pub /home/jenkins/.ssh/authorized_keys
-COPY --chown=jenkins id_rsa /home/jenkins/.ssh/id_rsa
-RUN ssh-keyscan github.com >> /home/jenkins/.ssh/known_hosts; chown jenkins:jenkins /home/jenkins/.ssh/known_hosts
-
-VOLUME "${JENKINS_AGENT_HOME}" "/tmp" "/run" "/var/run"
-WORKDIR "${JENKINS_AGENT_HOME}"
-
-COPY setup-sshd /usr/local/bin/setup-sshd
-
-EXPOSE 22
-
 RUN apt-get install -y git
 RUN cd /tmp; git clone https://github.com/chuck-hilyard/docker-jenkins-agent
 RUN chown -R jenkins:jenkins /var/jenkins_home/; chown -R jenkins:jenkins /tmp
 RUN echo "jenkins  ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers.d/README
+
+COPY --chown=jenkins id_rsa.pub /home/jenkins/.ssh/authorized_keys
+COPY --chown=jenkins id_rsa /home/jenkins/.ssh/id_rsa
+RUN ssh-keyscan github.com >> /home/jenkins/.ssh/known_hosts; chown jenkins:jenkins /home/jenkins/.ssh/known_hosts
+
+#VOLUME "${JENKINS_AGENT_HOME}" "/tmp" "/run" "/var/run"
+#WORKDIR "${JENKINS_AGENT_HOME}"
+
+COPY setup-sshd /usr/local/bin/setup-sshd
+
+EXPOSE 22
 
 USER jenkins
 
