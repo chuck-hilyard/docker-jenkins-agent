@@ -45,5 +45,6 @@ EXPOSE 22
 
 USER jenkins
 
-CMD [ "python3", "-u", "/docker-jenkins-agent/init.py" ]
+#CMD [ "python3", "-u", "/docker-jenkins-agent/init.py" ]
+ENTRYPOINT [ "/usr/local/bin/setup-sshd" ]
 
