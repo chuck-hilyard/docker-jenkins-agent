@@ -12,7 +12,8 @@ import time
 def install_software():
   # install build/test software
   # TODO: make sure the previous install is done prior to moving on
-  subprocess.run(["ssh-keyscan github.com >> /home/jenkins/.ssh/known_hosts"])
+  time.sleep(15)
+  subprocess.run(["ssh-keyscan", "github.com >> /home/jenkins/.ssh/known_hosts"])
   time.sleep(15)
   subprocess.run(["sudo", "apt-get", "install", "-y", "curl"])
   time.sleep(15)
