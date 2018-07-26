@@ -6,6 +6,7 @@
 
 import http.client
 import jenkins
+import os
 import requests
 import socket
 import subprocess
@@ -70,6 +71,7 @@ def is_master_up():
   # if up call join_jenkins_master
 
 def main():
+  os.environ['CHROME_BIN'] = '/usr/bin/chromium-browser'
   while True:
     print("main loop")
     is_master_up()
