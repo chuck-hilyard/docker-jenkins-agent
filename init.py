@@ -31,7 +31,7 @@ def install_software():
   time.sleep(15)
   subprocess.run(["sudo", "apt-get", "install", "-y", "docker.io"])
   time.sleep(15)
-  #subprocess.run(["sudo", "apt-get", "install", "-y", "awscli"])
+  subprocess.run(["sudo", "DEBIAN_FRONTEND=noninteractive", "apt-get", "install", "-yq", "awscli"])
   time.sleep(15)
   subprocess.run(["sudo", "apt-get", "install", "-y", "openjdk-8-jre-headless"])
   time.sleep(15)
@@ -71,7 +71,6 @@ def is_master_up():
   # if up call join_jenkins_master
 
 def main():
-  os.environ['CHROME_BIN'] = '/usr/bin/chromium-browser'
   while True:
     print("main loop")
     is_master_up()
