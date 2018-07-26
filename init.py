@@ -48,12 +48,12 @@ def install_software():
 
 def join_jenkins_master():
   containerId = socket.gethostname()
-  server = jenkins.Jenkins('http://172.17.0.3:8080', username='admin', password='admin')
+  server = jenkins.Jenkins('http://172.17.0.2:8080', username='admin', password='admin')
   params = {
       'port': '22',
       'username': 'jenkins',
       'credentialsId': 'jenkins-credential-id',
-      'host': '172.17.0.2'
+      'host': '172.17.0.3'
     }
   server.create_node(
     containerId,
