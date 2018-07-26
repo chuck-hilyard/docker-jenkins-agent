@@ -65,7 +65,7 @@ def join_jenkins_master():
     launcher_params = params)
 
 def is_master_up():
-  pass
+  print("is master up?")
   # http check to 8080
   # if up call join_jenkins_master
 
@@ -73,6 +73,7 @@ def main():
   while True:
     print("main loop")
     is_master_up()
+    time.sleep(15)
 
 
 if __name__ == '__main__':
