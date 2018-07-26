@@ -52,7 +52,7 @@ def update_jenkins_master():
   params = {
       'port': '22',
       'username': 'jenkins',
-      'credentialsId': '750b8e68-6a14-4856-b39f-3dd803326fa5',
+      'credentialsId': '8c2d990d-0477-4005-9e2a-f76eb64ecee3',
       'host': '172.17.0.3'
     }
   server.create_node(
