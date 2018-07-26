@@ -26,7 +26,7 @@ ENV CHROME_BIN "/usr/bin/chromium-browser"
 
 EXPOSE 22
 
-USER jenkins
+#USER jenkins
 
 CMD [ "python3", "-u", "/home/jenkins/init.py" ]
 
