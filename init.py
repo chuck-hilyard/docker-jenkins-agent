@@ -46,14 +46,14 @@ def install_software():
   time.sleep(15)
   subprocess.run(["sudo", "service", "ssh", "start"])
 
-def update_jenkins_master():
+def join_jenkins_master():
   containerId = socket.gethostname()
-  server = jenkins.Jenkins('http://172.17.0.2:8080', username='admin', password='admin')
+  server = jenkins.Jenkins('http://172.17.0.3:8080', username='admin', password='admin')
   params = {
       'port': '22',
       'username': 'jenkins',
       'credentialsId': 'jenkins-credential-id',
-      'host': '172.17.0.3'
+      'host': '172.17.0.2'
     }
   server.create_node(
     containerId,
@@ -64,13 +64,18 @@ def update_jenkins_master():
     launcher = jenkins.LAUNCHER_SSH,
     launcher_params = params)
 
+def is_master_up():
+  pass
+  # http check to 8080
+  # if up call join_jenkins_master
 
 def main():
   while True:
     print("main loop")
+    is_master_up()
 
 
 if __name__ == '__main__':
   install_software()
-  update_jenkins_master()
+  join_jenkins_master()
   main()
