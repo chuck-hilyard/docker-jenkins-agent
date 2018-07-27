@@ -48,6 +48,7 @@ def install_software():
   subprocess.run(["sudo", "service", "ssh", "start"])
 
 def join_jenkins_master():
+  print("joining jenkins master")
   containerId = socket.gethostname()
   server = jenkins.Jenkins('http://172.17.0.3:8080', username='admin', password='admin')
   params = {
