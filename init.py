@@ -71,8 +71,10 @@ def is_master_up():
   master_job_info = server.get_job_info("jenkins-init", depth=0, fetch_all_builds=False)
   is_up = master_job_info['displayName']
   if is_up == 'jenkins-init':
+		print("master is up!")
     return True
   else:
+		print("master is DOWN!")
     return False
 
 def main():
@@ -82,7 +84,7 @@ def main():
   if status == True:
     join_jenkins_master
   else:
-    print("master is not up...")
+    print("hi")
   time.sleep(30)
 
 
