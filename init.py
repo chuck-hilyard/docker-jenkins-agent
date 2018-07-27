@@ -49,12 +49,12 @@ def install_software():
 
 def join_jenkins_master():
   containerId = socket.gethostname()
-  server = jenkins.Jenkins('http://172.17.0.2:8080', username='admin', password='admin')
+  server = jenkins.Jenkins('http://172.17.0.3:8080', username='admin', password='admin')
   params = {
       'port': '22',
       'username': 'jenkins',
       'credentialsId': 'jenkins-credential-id',
-      'host': '172.17.0.3'
+      'host': '172.17.0.2'
     }
   server.create_node(
     containerId,
@@ -67,7 +67,7 @@ def join_jenkins_master():
 
 def is_master_up():
   print("is master up?")
-  server = jenkins.Jenkins('http://172.17.0.2:8080', username='admin', password='admin')
+  server = jenkins.Jenkins('http://172.17.0.3:8080', username='admin', password='admin')
   #TODO: handle exception RemoteDisconnected
   try:
     master_job_info = server.get_job_info("jenkins-init", depth=0, fetch_all_builds=False)
