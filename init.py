@@ -70,7 +70,7 @@ def is_master_up():
   server = jenkins.Jenkins('http://172.17.0.2:8080', username='admin', password='admin')
   #TODO: handle exception RemoteDisconnected
   try:
-  master_job_info = server.get_job_info("jenkins-init", depth=0, fetch_all_builds=False)
+    master_job_info = server.get_job_info("jenkins-init", depth=0, fetch_all_builds=False)
   except JenkinsException as e:
     print("UNABLE TO CONNECT W/ JENKINS MASTER")
   is_up = master_job_info['displayName']
