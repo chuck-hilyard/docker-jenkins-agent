@@ -68,7 +68,6 @@ def join_jenkins_master():
 def is_master_up():
   print("is master up?")
   server = jenkins.Jenkins('http://172.17.0.3:8080', username='admin', password='admin')
-  #TODO: handle exception RemoteDisconnected
   try:
     master_job_info = server.get_job_info("jenkins-init", depth=0, fetch_all_builds=False)
     is_up = master_job_info['displayName']
@@ -87,7 +86,7 @@ def main():
     print("main loop")
     status = is_master_up()
     if status == True:
-      join_jenkins_master
+      join_jenkins_master()
     else:
       print("hi")
     time.sleep(30)
