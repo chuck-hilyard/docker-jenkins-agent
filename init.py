@@ -83,16 +83,20 @@ def is_master_up():
 
 def node_exists_on_master():
   containerId = socket.gethostname()
-	server = jenkins.Jenkins('http://172.17.0.3:8080', username='admin', password='admin')
+  server = jenkins.Jenkins('http://172.17.0.3:8080', username='admin', password='admin')
+  return server.node_exists(containerId)
+
 
 def main():
   while True:
     print("main loop")
     status = is_master_up()
     if status == True:
+      is_node_on_master = node_exists_on_master()
+    if is_node_on_master == False:
       join_jenkins_master()
     else:
-      print("hi")
+      print("this agent is already on master")
     time.sleep(30)
 
 
