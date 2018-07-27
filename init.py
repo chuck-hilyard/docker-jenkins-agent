@@ -81,6 +81,10 @@ def is_master_up():
     print("master is DOWN!")
     return False
 
+def node_exists_on_master():
+  containerId = socket.gethostname()
+	server = jenkins.Jenkins('http://172.17.0.3:8080', username='admin', password='admin')
+
 def main():
   while True:
     print("main loop")
