@@ -67,14 +67,23 @@ def join_jenkins_master():
 
 def is_master_up():
   print("is master up?")
-  # http check to 8080
-  # if up call join_jenkins_master
+  server = jenkins.Jenkins('http://172.17.0.2:8080', username='admin', password='admin')
+  master_job_info = server.get_job_info("jenkins-init", depth=0, fetch_all_builds=False)
+  is_up = master_job_info['displayName' jenkins-init
+  if is_up == 'jenkins-init':
+    return True
+  else:
+    return False
 
 def main():
   while True:
     print("main loop")
-    is_master_up()
-    time.sleep(15)
+    status = is_master_up()
+  if status == True:
+    join_jenkins_master
+  else:
+    print("master is not up...")
+  time.sleep(30)
 
 
 if __name__ == '__main__':
