@@ -98,7 +98,9 @@ def main():
         join_jenkins_master()
       else:
         print("this agent is already on master")
-    time.sleep(30)
+  else:
+    print("master is DOWN...rechecking in 30 seconds")
+  time.sleep(30)
 
 
 if __name__ == '__main__':
