@@ -72,8 +72,8 @@ def is_master_up():
   try:
     master_job_info = server.get_job_info("jenkins-init", depth=0, fetch_all_builds=False)
     is_up = master_job_info['displayName']
-  except (http.client.RemoteDisconnected)
-    print("jenkins master may have gone down)
+  except (http.client.RemoteDisconnected):
+    print("jenkins master may have gone down")
     is_up = False
   except (jenkins.JenkinsException):
     print("unable to connect with master")
