@@ -33,6 +33,8 @@ def install_software():
   time.sleep(15)
   subprocess.run(["sudo", "DEBIAN_FRONTEND=noninteractive", "apt-get", "install", "-yq", "awscli"])
   time.sleep(15)
+  subprocess.run(["sudo", "DEBIAN_FRONTEND=noninteractive", "apt-get", "install", "-yq", "python3-boto3"])
+  time.sleep(15)
   subprocess.run(["sudo", "apt-get", "install", "-y", "openjdk-8-jre-headless"])
   time.sleep(15)
   subprocess.run(["usermod", "-aG", "docker", "jenkins"])
