@@ -52,7 +52,7 @@ def install_software():
 def join_jenkins_master():
   print("joining jenkins master")
   containerId = socket.gethostname()
-  server = jenkins.Jenkins('http://jenkins-master:8080', username='admin', password='admin')
+  server = jenkins.Jenkins('http://jenkins-master', username='admin', password='admin')
   params = {
       'port': '22',
       'username': 'jenkins',
@@ -70,7 +70,7 @@ def join_jenkins_master():
 
 def is_master_up():
   print("is master up?")
-  server = jenkins.Jenkins('http://jenkins-master:8080', username='admin', password='admin')
+  server = jenkins.Jenkins('http://jenkins-master', username='admin', password='admin')
   try:
     master_job_info = server.get_job_info("jenkins-init", depth=0, fetch_all_builds=False)
     is_up = master_job_info['displayName']
@@ -89,7 +89,7 @@ def is_master_up():
 
 def node_exists_on_master():
   containerId = socket.gethostname()
-  server = jenkins.Jenkins('http://jenkins-master:8080', username='admin', password='admin')
+  server = jenkins.Jenkins('http://jenkins-master', username='admin', password='admin')
   return server.node_exists(containerId)
 
 
