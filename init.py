@@ -15,7 +15,6 @@ import time
 def install_software():
   # install build/test software
   # TODO: make sure the previous install is done prior to moving on
-  time.sleep(60)
   subprocess.run(["sudo", "apt-get", "install", "-y", "curl"])
   time.sleep(60)
   subprocess.run(["sudo", "useradd", "jenkins"])
@@ -30,6 +29,8 @@ def install_software():
   subprocess.run(["sudo", "apt-get", "install", "-y", "libgconf2-4"])
   time.sleep(60)
   subprocess.run(["sudo", "apt-get", "install", "-y", "docker.io"])
+  time.sleep(60)
+  subprocess.run(["sudo", "apt-get", "install", "-y", "vim"])
   time.sleep(60)
   subprocess.run(["sudo", "DEBIAN_FRONTEND=noninteractive", "apt-get", "install", "-yq", "awscli"])
   time.sleep(60)
