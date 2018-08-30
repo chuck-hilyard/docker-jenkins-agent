@@ -30,8 +30,6 @@ def install_software():
   time.sleep(60)
   subprocess.run(["sudo", "apt-get", "install", "-y", "docker.io"])
   time.sleep(60)
-  subprocess.run(["sudo", "apt-get", "install", "-y", "vim"])
-  time.sleep(60)
   subprocess.run(["sudo", "DEBIAN_FRONTEND=noninteractive", "apt-get", "install", "-yq", "awscli"])
   time.sleep(60)
   subprocess.run(["sudo", "DEBIAN_FRONTEND=noninteractive", "apt-get", "install", "-yq", "python3-boto3"])
