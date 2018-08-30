@@ -15,6 +15,7 @@ import time
 def install_software():
   # install build/test software
   # TODO: make sure the previous install is done prior to moving on
+  subprocess.run(["sudo", "service", "ssh", "start"])
   subprocess.run(["sudo", "apt-get", "install", "-y", "curl", "chromium-browser", "libgconf2-4", "docker.io", "openjdk-8-jre-headless" ])
   time.sleep(60)
   subprocess.run(["sudo", "useradd", "jenkins"])
