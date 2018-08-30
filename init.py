@@ -47,7 +47,8 @@ def install_software():
   time.sleep(60)
   subprocess.run(["chown", "jenkins:jenkins", "-R", "/home/jenkins"])
   time.sleep(60)
-  subprocess.run(["sudo", "service", "ssh", "start"])
+  subprocess.run(["pip3", "install", "consul_kv"])
+  #subprocess.run(["sudo", "service", "ssh", "start"])
 
 def join_jenkins_master():
   print("joining jenkins master")
