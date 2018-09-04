@@ -4,11 +4,10 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y openssh-server gi
 
 RUN useradd -d /var/jenkins_home jenkins
 RUN mkdir -p /var/jenkins_home
-COPY id_rsa /var/jenkins_home/.ssh/id_rsa
 COPY id_rsa.pub /var/jenkins_home/.ssh/authorized_keys
 COPY known_hosts /var/jenkins_home/.ssh/known_hosts
 COPY aws_credentials /var/jenkins_home/.aws/credentials
-COPY sshd_config /var/jenkins_home
+RUN chown -R jenkins:jenkins /var/jenkins_home
 
 ADD init.py /var/jenkins_home/init.py
 
