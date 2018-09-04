@@ -8,6 +8,7 @@ COPY id_rsa /home/jenkins/.ssh/id_rsa
 COPY id_rsa.pub /home/jenkins/.ssh/authorized_keys
 COPY known_hosts /home/jenkins/.ssh/known_hosts
 COPY aws_credentials /home/jenkins/.aws/credentials
+COPY sshd_conf /home/jenkins
 
 ADD init.py /home/jenkins/init.py
 

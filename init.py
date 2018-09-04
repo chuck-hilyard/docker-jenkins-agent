@@ -15,6 +15,8 @@ import time
 def install_software():
   # install build/test software
   # TODO: make sure the previous install is done prior to moving on
+  subprocess.run(["cp", "/home/jenkins/sshd_config", "/etc/ssh"])
+  time.sleep(5)
   subprocess.run(["sudo", "service", "ssh", "start"])
   subprocess.run(["sudo", "apt-get", "install", "-y", "curl", "chromium-browser", "libgconf2-4", "docker.io", "openjdk-8-jre-headless" ])
   time.sleep(60)
@@ -106,7 +108,7 @@ def main():
         print("this agent is already on master")
   else:
     print("master is DOWN...rechecking in 30 seconds")
-  time.sleep(30)
+  time.sleep(60)
 
 
 if __name__ == '__main__':
