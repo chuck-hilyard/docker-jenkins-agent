@@ -15,40 +15,27 @@ import time
 def install_software():
   # install build/test software
   # TODO: make sure the previous install is done prior to moving on
-  subprocess.run(["cp", "/home/jenkins/sshd_config", "/etc/ssh"])
+  subprocess.run(["cp", "/var/jenkins_home/sshd_config", "/etc/ssh"])
   time.sleep(5)
   subprocess.run(["sudo", "service", "ssh", "start"])
   subprocess.run(["sudo", "apt-get", "install", "-y", "curl", "chromium-browser", "libgconf2-4", "docker.io", "openjdk-8-jre-headless" ])
-  time.sleep(60)
+  time.sleep(30)
   subprocess.run(["sudo", "useradd", "jenkins"])
-  #time.sleep(60)
   subprocess.run(["curl -sL https://deb.nodesource.com/setup_10.x |sudo -E bash -"], shell=True)
-  time.sleep(60)
+  time.sleep(30)
   subprocess.run(["sudo", "apt-get", "install", "-y", "nodejs"])
-  #time.sleep(60)
-  # TODO: verify npm is installed
-  #subprocess.run(["sudo", "apt-get", "install", "-y", "chromium-browser"])
-  #time.sleep(60)
-  #subprocess.run(["sudo", "apt-get", "install", "-y", "libgconf2-4"])
-  #time.sleep(60)
-  #subprocess.run(["sudo", "apt-get", "install", "-y", "docker.io"])
-  #time.sleep(60)
   subprocess.run(["sudo", "DEBIAN_FRONTEND=noninteractive", "apt-get", "install", "-yq", "awscli", "python3-boto3"])
-  time.sleep(60)
-  #subprocess.run(["sudo", "DEBIAN_FRONTEND=noninteractive", "apt-get", "install", "-yq", "python3-boto3"])
-  #time.sleep(60)
-  #subprocess.run(["sudo", "apt-get", "install", "-y", "openjdk-8-jre-headless"])
-  #time.sleep(60)
+  time.sleep(30)
   subprocess.run(["usermod", "-aG", "docker", "jenkins"])
-  time.sleep(60)
+  time.sleep(30)
   subprocess.run(["sudo", "npm", "install", "-g", "gulp"])
-  time.sleep(60)
+  time.sleep(30)
   subprocess.run(["sudo", "service", "docker", "start"])
-  time.sleep(60)
-  subprocess.run(["ssh-keyscan", "github.com", '>>', "/home/jenkins/.ssh/known_hosts"])
-  time.sleep(60)
-  subprocess.run(["chown", "jenkins:jenkins", "-R", "/home/jenkins"])
-  time.sleep(60)
+  time.sleep(30)
+  subprocess.run(["ssh-keyscan", "github.com", '>>', "/var/jenkins_home/.ssh/known_hosts"])
+  time.sleep(30)
+  subprocess.run(["chown", "jenkins:jenkins", "-R", "/var/jenkins_home"])
+  time.sleep(30)
   subprocess.run(["pip3", "install", "consul_kv"])
   #subprocess.run(["sudo", "service", "ssh", "start"])
 
@@ -65,7 +52,7 @@ def join_jenkins_master():
   server.create_node(
     containerId,
     nodeDescription = "test slave node",
-    remoteFS = "/home/jenkins",
+    remoteFS = "/var/jenkins_home",
     labels = "common",
     exclusive = False,
     launcher = jenkins.LAUNCHER_SSH,
