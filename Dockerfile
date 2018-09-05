@@ -9,7 +9,7 @@ COPY known_hosts /var/jenkins_home/.ssh/known_hosts
 COPY aws_credentials /var/jenkins_home/.aws/credentials
 RUN chown -R jenkins:jenkins /var/jenkins_home
 
-ADD init.py /var/jenkins_home/init.py
+ADD init.py /home/jenkins/init.py
 
 WORKDIR /var/jenkins_home
 
@@ -29,5 +29,5 @@ EXPOSE 22
 
 #USER jenkins
 
-CMD [ "python3", "-u", "/var/jenkins_home/init.py" ]
+CMD [ "python3", "-u", "/home/jenkins/init.py" ]
 
