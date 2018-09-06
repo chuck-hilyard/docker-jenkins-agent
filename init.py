@@ -19,6 +19,8 @@ def install_software():
   time.sleep(10)
   subprocess.run(["sudo", "cp", "/tmp/authorized_keys", "/var/jenkins_home/.ssh"])
   time.sleep(10)
+  subprocess.run(["sudo", "cp", "/tmp/sshd_config", "/etc/ssh/"])
+  time.sleep(10)
   subprocess.run(["sudo", "cp", "/tmp/known_hosts", "/var/jenkins_home/.ssh"])
   time.sleep(10)
   subprocess.run(["sudo", "cp", "/tmp/credentials", "/var/jenkins_home/.aws"])

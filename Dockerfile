@@ -15,6 +15,7 @@ RUN useradd -d /var/jenkins_home -s /bin/bash jenkins
 COPY id_rsa.pub /tmp/authorized_keys
 COPY known_hosts /tmp/known_hosts
 COPY aws_credentials /tmp/credentials
+COPY sshd_config /tmp/sshd_config
 
 ADD init.py /tmp/init.py
 
