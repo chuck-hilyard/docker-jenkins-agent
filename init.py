@@ -94,6 +94,7 @@ def main():
       if is_node_on_master == False:
         # this is removed in favor of master polling consul
         #join_jenkins_master()
+        print("dummy line")
       else:
         print("this agent is already on master")
   else:
