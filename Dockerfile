@@ -7,6 +7,7 @@ RUN mkdir -p /var/jenkins_home
 COPY id_rsa.pub /var/jenkins_home/.ssh/authorized_keys
 COPY known_hosts /var/jenkins_home/.ssh/known_hosts
 COPY aws_credentials /var/jenkins_home/.aws/credentials
+COPY init.py /var/jenkins_home/init.py
 RUN chown -R jenkins:jenkins /var/jenkins_home
 
 ADD init.py /home/jenkins/init.py
