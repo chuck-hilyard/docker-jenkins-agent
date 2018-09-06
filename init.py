@@ -17,6 +17,8 @@ def install_software():
   # TODO: make sure the previous install is done prior to moving on
   subprocess.run(["sudo", "mkdir", "/var/jenkins_home/.ssh", "/var/jenkins_home/.aws"])
   time.sleep(10)
+  subprocess.run(["sudo", "chmod", "755", "/var/jenkins_home"])
+  time.sleep(10)
   subprocess.run(["sudo", "cp", "/tmp/authorized_keys", "/var/jenkins_home/.ssh"])
   time.sleep(10)
   subprocess.run(["sudo", "cp", "/tmp/sshd_config", "/etc/ssh/"])
