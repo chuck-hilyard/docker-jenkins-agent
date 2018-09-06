@@ -2,15 +2,21 @@ FROM ubuntu:latest
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y openssh-server git sudo python3 python3-pip python3-jenkins 
 
-RUN useradd -d /var/jenkins_home jenkins
-RUN mkdir -p /var/jenkins_home
-COPY id_rsa.pub /var/jenkins_home/.ssh/authorized_keys
-COPY known_hosts /var/jenkins_home/.ssh/known_hosts
-COPY aws_credentials /var/jenkins_home/.aws/credentials
-COPY init.py /var/jenkins_home/init.py
-RUN chown -R jenkins:jenkins /var/jenkins_home
+# add all this via the init script
+#RUN useradd -d /var/jenkins_home jenkins
+#RUN mkdir -p /var/jenkins_home
+#COPY id_rsa.pub /var/jenkins_home/.ssh/authorized_keys
+#COPY known_hosts /var/jenkins_home/.ssh/known_hosts
+#COPY aws_credentials /var/jenkins_home/.aws/credentials
+#COPY init.py /var/jenkins_home/init.py
+#RUN chown -R jenkins:jenkins /var/jenkins_home
 
-ADD init.py /var/jenkins_home/init.py
+#RUN useradd -d /var/jenkins_home jenkins
+COPY id_rsa.pub /tmp/authorized_keys
+COPY known_hosts /tmp/known_hosts
+COPY aws_credentials /tmp/credentials
+
+ADD init.py /tmp/init.py
 
 WORKDIR /var/jenkins_home
 
@@ -30,5 +36,4 @@ EXPOSE 22
 
 #USER jenkins
 
-CMD [ "python3", "-u", "/var/jenkins_home/init.py" ]
-
+CMD [ "python3", "-u", "/tmp/init.py" ]

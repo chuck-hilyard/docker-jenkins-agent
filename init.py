@@ -15,6 +15,10 @@ import time
 def install_software():
   # install build/test software
   # TODO: make sure the previous install is done prior to moving on
+  subprocess.run(["sudo", "mkdir", "/var/jenkins_home", "/var/jenkins_home/.ssh", "/var/jenkins_home/.aws"])
+  subprocess.run(["sudo", "cp", "/tmp/authorized_keys", "/var/jenkins_home/.ssh"])
+  subprocess.run(["sudo", "cp", "/tmp/known_hosts", "/var/jenkins_home/.ssh"])
+  subprocess.run(["sudo", "cp", "/tmp/credentials", "/var/jenkins_home/.aws"])
   subprocess.run(["sudo", "service", "ssh", "start"])
   subprocess.run(["sudo", "apt-get", "install", "-y", "curl", "chromium-browser", "libgconf2-4", "docker.io", "openjdk-8-jre-headless" ])
   time.sleep(30)
