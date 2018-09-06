@@ -3,7 +3,7 @@ FROM ubuntu:latest
 RUN apt-get update && apt-get upgrade -y && apt-get install -y openssh-server git sudo python3 python3-pip python3-jenkins 
 
 # add all this via the init script
-#RUN useradd -d /var/jenkins_home jenkins
+RUN useradd -d /var/jenkins_home jenkins
 #RUN mkdir -p /var/jenkins_home
 #COPY id_rsa.pub /var/jenkins_home/.ssh/authorized_keys
 #COPY known_hosts /var/jenkins_home/.ssh/known_hosts
