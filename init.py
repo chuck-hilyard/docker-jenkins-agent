@@ -36,7 +36,7 @@ def install_software():
   time.sleep(30)
   subprocess.run(["ssh-keyscan", "github.com", '>>', "/var/jenkins_home/.ssh/known_hosts"])
   time.sleep(30)
-  subprocess.run(["chown", "jenkins:jenkins", "-R", "/var/jenkins_home"])
+  subprocess.run(["sudo", "chown", "jenkins:jenkins", "-R", "/var/jenkins_home"])
   time.sleep(30)
   subprocess.run(["pip3", "install", "consul_kv"])
   #subprocess.run(["sudo", "service", "ssh", "start"])
