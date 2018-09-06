@@ -15,14 +15,20 @@ import time
 def install_software():
   # install build/test software
   # TODO: make sure the previous install is done prior to moving on
-  subprocess.run(["sudo", "mkdir", "/var/jenkins_home", "/var/jenkins_home/.ssh", "/var/jenkins_home/.aws"])
+  subprocess.run(["sudo", "useradd", "-d /var/jenkins_home", "jenkins"])
+  time.sleep(10)
+  subprocess.run(["sudo", "mkdir", "/var/jenkins_home/.ssh", "/var/jenkins_home/.aws"])
+  time.sleep(10)
   subprocess.run(["sudo", "cp", "/tmp/authorized_keys", "/var/jenkins_home/.ssh"])
+  time.sleep(10)
   subprocess.run(["sudo", "cp", "/tmp/known_hosts", "/var/jenkins_home/.ssh"])
+  time.sleep(10)
   subprocess.run(["sudo", "cp", "/tmp/credentials", "/var/jenkins_home/.aws"])
+  time.sleep(10)
   subprocess.run(["sudo", "service", "ssh", "start"])
+  time.sleep(10)
   subprocess.run(["sudo", "apt-get", "install", "-y", "curl", "chromium-browser", "libgconf2-4", "docker.io", "openjdk-8-jre-headless" ])
   time.sleep(30)
-  subprocess.run(["sudo", "useradd", "jenkins"])
   subprocess.run(["curl -sL https://deb.nodesource.com/setup_10.x |sudo -E bash -"], shell=True)
   time.sleep(30)
   subprocess.run(["sudo", "apt-get", "install", "-y", "nodejs"])
