@@ -34,9 +34,8 @@ def install_software():
   subprocess.run(["curl -sL https://deb.nodesource.com/setup_10.x |sudo -E bash -"], shell=True)
   time.sleep(30)
   subprocess.run(["sudo", "apt-get", "install", "-y", "nodejs"])
-  subprocess.run(["sudo", "DEBIAN_FRONTEND=noninteractive", "apt-get", "install", "-yq", "awscli", "python3-boto3"])
   time.sleep(30)
-  subprocess.run(["usermod", "-aG", "docker", "jenkins"])
+  subprocess.run(["sudo", "DEBIAN_FRONTEND=noninteractive", "apt-get", "install", "-yq", "awscli", "python3-boto3"])
   time.sleep(30)
   subprocess.run(["sudo", "npm", "install", "-g", "gulp"])
   time.sleep(30)
@@ -48,6 +47,8 @@ def install_software():
   time.sleep(30)
   subprocess.run(["pip3", "install", "consul_kv"])
   #subprocess.run(["sudo", "service", "ssh", "start"])
+  time.sleep(30)
+  subprocess.run(["usermod", "-aG", "docker", "jenkins"])
 
 def join_jenkins_master():
   print("joining jenkins master")
