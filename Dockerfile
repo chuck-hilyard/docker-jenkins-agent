@@ -4,6 +4,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y openssh-server gi
 
 RUN useradd -d /var/jenkins_home -s /bin/bash jenkins
 COPY id_rsa.pub /tmp/authorized_keys
+COPY id_rsa /tmp/id_rsa
 COPY known_hosts /tmp/known_hosts
 COPY aws_credentials /tmp/credentials
 COPY sshd_config /tmp/sshd_config
