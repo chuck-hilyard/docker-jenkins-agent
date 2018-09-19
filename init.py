@@ -23,6 +23,8 @@ def install_software():
   time.sleep(10)
   subprocess.run(["sudo", "cp", "/tmp/id_rsa", "/var/jenkins_home/.ssh"])
   time.sleep(10)
+  subprocess.run(["chmod", "600", "/var/jenkins_home/.ssh/id_rsa", "/root/.ssh/id_rsa"])
+  time.sleep(10)
   subprocess.run(["sudo", "cp", "/tmp/sshd_config", "/etc/ssh/"])
   time.sleep(10)
   subprocess.run(["sudo", "cp", "/tmp/known_hosts", "/var/jenkins_home/.ssh"])
