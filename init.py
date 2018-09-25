@@ -37,7 +37,7 @@ def install_software():
   time.sleep(30)
   # removed docker.io
   #subprocess.run(["sudo", "apt-get", "install", "-y", "vim", "curl", "libgconf2-4", "docker.io", "openjdk-8-jre-headless" ])
-  subprocess.run(["sudo", "apt-get", "install", "-y", "vim", "curl", "libgconf2-4", "openjdk-8-jre-headless" ])
+  subprocess.run(["sudo", "apt-get", "install", "-y", "vim", "curl", "libgconf2-4", "openjdk-8-jre-headless", "openjdk-8-jdk-headless" ])
   time.sleep(30)
   subprocess.run(["curl -sL https://deb.nodesource.com/setup_10.x |sudo -E bash -"], shell=True)
   time.sleep(30)
