@@ -8,6 +8,7 @@ COPY id_rsa /tmp/id_rsa
 COPY known_hosts /tmp/known_hosts
 COPY aws_credentials /tmp/credentials
 COPY sshd_config /tmp/sshd_config
+COPY bash_profile /var/jenkins_home/.bash_profile
 
 ADD init.py /tmp/init.py
 
@@ -25,7 +26,6 @@ ENV SLAVE_WORING_DIR ""
 ENV CHROME_BIN "/usr/bin/chromium-browser"
 ENV CLEAN_WORKING_DIR "true"
 
-COPY bash_profile /var/jenkins_home/.bash_profile
 RUN chown jenkins:jenkins /var/jenkins_home/.bash_profile
 
 EXPOSE 22
