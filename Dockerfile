@@ -22,11 +22,11 @@ ENV SLAVE_SECRET ""
 ENV SLAVE_EXECUTORS "1"
 ENV SLAVE_LABELS "docker"
 ENV SLAVE_WORING_DIR ""
-ENV CLEAN_WORKING_DIR "true"
 ENV CHROME_BIN "/usr/bin/chromium-browser"
-ENV GOROOT=/usr/local/go
-ENV GOPATH=$HOME/go
-ENV PATH=$GOPATH/BIN:$GOROOT/bin:$PATH
+ENV CLEAN_WORKING_DIR "true"
+
+COPY bash_profile /var/jenkins_home/.bash_profile
+RUN chown jenkins:jenkins /var/jenkins_home/.bash_profile
 
 EXPOSE 22
 
