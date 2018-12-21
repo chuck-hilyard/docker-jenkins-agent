@@ -26,8 +26,6 @@ ENV SLAVE_WORING_DIR ""
 ENV CHROME_BIN "/usr/bin/chromium-browser"
 ENV CLEAN_WORKING_DIR "true"
 
-RUN chown jenkins:jenkins /var/jenkins_home/.bash_profile
-
 EXPOSE 22
 
 CMD [ "python3", "-u", "/tmp/init.py" ]
