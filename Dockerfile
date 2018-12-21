@@ -8,7 +8,6 @@ COPY id_rsa /tmp/id_rsa
 COPY known_hosts /tmp/known_hosts
 COPY aws_credentials /tmp/credentials
 COPY sshd_config /tmp/sshd_config
-COPY bash_profile /tmp/bash_profile
 
 ADD init.py /tmp/init.py
 

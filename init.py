@@ -29,7 +29,7 @@ def install_software():
   time.sleep(10)
   subprocess.run(["sudo", "cp", "/tmp/known_hosts", "/var/jenkins_home/.ssh"])
   time.sleep(10)
-  subprocess.run(["sudo", "cp", "/tmp/bash_profile", "/var/jenkins_home/.bash_profile"])
+  subprocess.run(["sudo", "ln", "-s", "/usr/local/go/bin/go", "/usr/local/bin/go"])
   time.sleep(10)
   subprocess.run(["sudo", "service", "ssh", "start"])
   time.sleep(10)
