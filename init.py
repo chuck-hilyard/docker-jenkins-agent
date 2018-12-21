@@ -29,6 +29,8 @@ def install_software():
   time.sleep(10)
   subprocess.run(["sudo", "cp", "/tmp/known_hosts", "/var/jenkins_home/.ssh"])
   time.sleep(10)
+  subprocess.run(["sudo", "cp", "/tmp/bash_profile", "/var/jenkins_home/.bash_profile"])
+  time.sleep(10)
   subprocess.run(["sudo", "service", "ssh", "start"])
   time.sleep(10)
   subprocess.run(["sudo", "wget", "https://dl.google.com/go/go1.11.linux-amd64.tar.gz", "-P", "/tmp"])
