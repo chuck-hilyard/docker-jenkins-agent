@@ -63,7 +63,8 @@ def install_software():
   time.sleep(10)
   subprocess.run(["sudo", "cp", "/tmp/credentials", "/var/jenkins_home/.aws"])
   time.sleep(10)
-  subprocess.run(["git", "clone", "git@github.com:chuck-hilyard/jenkins-rl-bin.git", "/var/jenkins_home/jenkins-rl-bin"])
+  #subprocess.run(["git", "clone", "git@github.com:chuck-hilyard/jenkins-rl-bin.git", "/var/jenkins_home/jenkins-rl-bin"])
+  subprocess.run("if [ -d /var/jenkins_home/jenkins-rl-bin ]; then echo 'jenkins-rl-bin already exists'; else git clone git@github.com:chuck-hilyard/jenkins-rl-bin.git /var/jenkins_home/jenkins-rl-bin; fi", shell=True, stderr=subprocess.PIPE)
 
 def join_jenkins_master():
   print("joining jenkins master")

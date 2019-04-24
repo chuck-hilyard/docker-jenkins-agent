@@ -27,4 +27,7 @@ ENV CLEAN_WORKING_DIR "true"
 
 EXPOSE 22
 
+COPY entrypoint.sh /usr/local/bin/
+ENTRYPOINT ["entrypoint.sh"]
+
 CMD [ "python3", "-u", "/tmp/init.py" ]
