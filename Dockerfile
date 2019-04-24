@@ -1,4 +1,5 @@
 FROM ubuntu:latest
+COPY Docker-entrypoint.sh /usr/local/bin/
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y openssh-server git sudo python3 python3-pip python3-jenkins 
 
