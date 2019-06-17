@@ -35,7 +35,7 @@ def install_software():
   time.sleep(10)
   subprocess.run(["sudo", "service", "ssh", "start"])
   time.sleep(10)
-  subprocess.run(["sudo", "wget", "https://dl.google.com/go/go1.11.linux-amd64.tar.gz", "-P", "/tmp"])
+  subprocess.run(["sudo", "wget", "-q", "https://dl.google.com/go/go1.11.linux-amd64.tar.gz", "-P", "/tmp"])
   time.sleep(10)
   subprocess.run(["sudo", "gzip", "-d", "/tmp/go1.11.linux-amd64.tar.gz"])
   time.sleep(10)
