@@ -1,6 +1,8 @@
 FROM ubuntu:latest
 COPY Docker-entrypoint.sh /usr/local/bin/
 
+ENV DEBIAN_FRONTEND "noninteractive"
+
 RUN apt-get update && apt-get upgrade -y && apt-get install -y openssh-server git sudo python3 python3-pip python3-jenkins 
 
 RUN useradd -d /var/jenkins_home -s /bin/bash jenkins
