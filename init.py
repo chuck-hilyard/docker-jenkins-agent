@@ -61,7 +61,7 @@ def install_software():
   subprocess.run(["sudo", "chown", "jenkins:jenkins", "-R", "/var/jenkins_home"])
   time.sleep(30)
   print("****************************** pip3 INSTALLING consul_kv")
-  subprocess.run(["pip3", "install", "consul_kv"])
+  subprocess.run(["pip3", "install", "consul_kv", "wget"])
   time.sleep(30)
   subprocess.run(["usermod", "-aG", "docker", "jenkins"])
   time.sleep(10)
