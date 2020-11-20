@@ -14,16 +14,6 @@ COPY sshd_config /tmp/sshd_config
 
 ADD init.py /tmp/init.py
 
-# nvm install
-#ENV NVM_DIR="/var/jenkins_home/.nvm"
-#RUN curl -sL https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.0/install.sh -o /tmp/install_nvm.sh \ 
-#  && mkdir ${NVM_DIR} \
-#  && /tmp/install_nvm.sh \
-#  #&& echo "export NVM_DIR="/var/jenkins_home/.nvm" \
-#  #  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm \
-#  #  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion" >> /var/jenkins_home/.bash_profile \
-#  && chown jenkins:jenkins /var/jenkins_home/.bash_profile -R ${NVM_DIR}
-
 WORKDIR /var/jenkins_home
 
 ENV JENKINS_URL "http://jenkins"
