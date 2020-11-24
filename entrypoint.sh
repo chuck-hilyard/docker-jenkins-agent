@@ -9,11 +9,9 @@ set_real_vars() {
   echo "set_real_vars()"
   environment=$(curl -s -X GET http://consul:8500/v1/kv/${service_name}/config/environment?raw)
   platform=$(curl -s -X GET http://consul:8500/v1/kv/${service_name}/config/PLATFORM?raw)
-  echo "****PLATFOR***: ${platform}"
   credentials=$(curl -X GET http://vault/v1/secret/${service_name} -H "X-Vault-Token: ${1}" |jq -r '.data.aws_credentials')
   echo "$(curl -X GET http://vault/v1/secret/${service_name} -H "X-Vault-Token: ${1}" |jq -r '.data.aws_credentials')"
-  echo "****CREDENTIALS***: ${credentials}"
-  #echo ${credentials} > /var/jenkins_home/.aws/credentials
+  echo ${credentials} > /var/jenkins_home/.aws/credentials
 }
 
 if [ -z $service_name ]
