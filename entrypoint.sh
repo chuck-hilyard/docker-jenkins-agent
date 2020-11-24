@@ -10,7 +10,7 @@ set_real_vars() {
   aws_credentials=$(curl -X GET http://vault/v1/secret/${service_name} -H "X-Vault-Token: ${1}" |jq -r '.data.aws_credentials')
   echo "$(curl -X GET http://vault/v1/secret/${service_name} -H "X-Vault-Token: ${1}" |jq -r '.data.aws_credentials')"
   mkdir -p /var/{jenkins_home/.aws}
-  echo ${aws_credentials} > /var/jenkins_home/.aws/credentials
+  echo "${aws_credentials}" > /var/jenkins_home/.aws/credentials
 }
 
 if [ -z $service_name ]
