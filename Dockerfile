@@ -1,9 +1,11 @@
-FROM ubuntu:latest
+FROM ubuntu:18.04
 COPY Docker-entrypoint.sh /usr/local/bin/
 
 ENV DEBIAN_FRONTEND "noninteractive"
 
 RUN apt-get update && apt-get upgrade -yq && apt-get install -y openssh-server git sudo python3 python3-pip python3-jenkins chromium-browser vim curl libgconf-2-4 openjdk-8-jre openjdk-8-jdk nodejs awscli python3-boto3 npm jq
+
+RUN curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 
 RUN useradd -d /var/jenkins_home -s /bin/bash jenkins
 COPY id_rsa.pub /tmp/authorized_keys
