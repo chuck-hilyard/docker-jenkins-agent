@@ -45,7 +45,8 @@ def install_software():
   time.sleep(10)
 
   print("** INSTALLING NVM ** (Begin)")
-  subprocess.run(["curl", "-#", "-sL", "https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.0/install.sh", "-o", "/var/jenkins_home/install_nvm.sh"], capture_output=True)
+  #subprocess.run(["curl", "-#", "-sL", "https://raw.githubusercontent.com/nvm-sh/nvm/v0.37.0/install.sh", "-o", "/var/jenkins_home/install_nvm.sh"], capture_output=True)
+  subprocess.run(["curl", "-#", "-sL", "https://raw.githubusercontent.com/creationix/nvm/master/install.sh", "-o", "/var/jenkins_home/install_nvm.sh"], capture_output=True)
   time.sleep(60)
   subprocess.run(["mkdir", "/var/jenkins_home/.nvm"])
   time.sleep(5)
