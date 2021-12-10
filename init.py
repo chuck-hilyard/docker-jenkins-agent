@@ -52,7 +52,7 @@ def install_software():
   time.sleep(5)
   subprocess.run(["touch", "/var/jenkins_home/.bash_profile"])
   time.sleep(5)
-  subprocess.run(["echo", ". .nvm/nvm.sh >>", "/var/jenkins_home/.bash_profile"])
+  subprocess.run(["echo", ". .nvm/nvm.sh", ">>", "/var/jenkins_home/.bash_profile"])
   time.sleep(5)
   subprocess.run(["chmod", "755", "/var/jenkins_home/install_nvm.sh"])
   time.sleep(15)
