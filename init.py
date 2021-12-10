@@ -52,6 +52,8 @@ def install_software():
   time.sleep(5)
   subprocess.run(["touch", "/var/jenkins_home/.bash_profile"])
   time.sleep(5)
+  subprocess.run(["echo", ". .nvm/nvm.sh >>", "/var/jenkins_home/.bash_profile"])
+  time.sleep(5)
   subprocess.run(["chmod", "755", "/var/jenkins_home/install_nvm.sh"])
   time.sleep(15)
   #subprocess.run(["/var/jenkins_home/install_nvm.sh"], env={"NVM_DIR": "/var/jenkins_home/.nvm", "XDG_CONFIG_HOME": "/var/jenkins_home"})
